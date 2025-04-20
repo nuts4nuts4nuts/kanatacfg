@@ -1,0 +1,73 @@
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+  caps-time 500
+)
+
+(defalias
+  ;; thumb mod-taps
+  mslc (tap-hold-release $tap-time $hold-time spc lctl)
+  msrc (tap-hold-release $tap-time $hold-time spc rctl)
+  mblm (tap-hold-release $tap-time $hold-time bspc lmet)
+  mrrm (tap-hold-release $tap-time $hold-time ret rmet)
+
+  ;; home row mod-taps
+  ma (tap-hold-release $tap-time $hold-time a lsft)
+  ms (tap-hold-release $tap-time $hold-time s lalt)
+  md (tap-hold-release $tap-time $hold-time d lmet)
+  mf (tap-hold-release $tap-time $hold-time f lctl)
+  mj (tap-hold-release $tap-time $hold-time j rctl)
+  mk (tap-hold-release $tap-time $hold-time k rmet)
+  ml (tap-hold-release $tap-time $hold-time l ralt)
+  m; (tap-hold-release $tap-time $hold-time ; rsft)
+
+  ;; cool shifts
+  cls (tap-dance $tap-time (one-shot lsft) (caps-word-toggle $caps-time))
+  clr (tap-dance $tap-time (one-shot rsft) (caps-word-toggle $caps-time))
+  
+  ;; special
+  spec (tap-hold $tap-time $hold-time fn (layer-while-held special))
+  hrm (layer-switch homerow)
+  tcm (layer-switch thumbs)
+)
+
+(defsrc
+  esc    f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  grv    1     2     3     4     5     6     7     8     9     0     -     =     bspc
+  tab    q     w     e     r     t     y     u     i     o     p     [     ]
+  caps   a     s     d     f     g     h     j     k     l     ;     '     \     ret
+  lsft   z     x     c     v     b     n     m     ,     .     /     rsft
+  fn     lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  
+)
+
+(deflayer thumbs
+  _    🔅    🔆    mctl  sls   dtn   dnd   ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊 
+  _     _     _     _      _     _     _      _     _     _       _     _     _     @mblm
+  _     _     _     _      _     _     _      _     _     _       _     _     _
+  @mslc _     _     _      _     _     _      _     _     _       _     _     _     @mrrm
+  @cls  _     _     _      _     _     _      _     _     _       _     @clr
+  @spec @spec _     @mblm              @msrc              @mrrm   _     _    _ _    _
+)
+
+(deflayer homerow
+  _    🔅    🔆    mctl  sls   dtn   dnd   ◀◀    ▶⏸    ▶▶    🔇    🔉    🔊 
+  _     _     _     _      _     _     _      _     _     _       _     _     _     @mblm
+  _     _     _     _      _     _     _      _     _     _       _     _     _
+  @mslc @ma   @ms   @md    @mf   _     _      @mj   @mk   @ml     @m;   _     _     @mrrm
+  @cls  _     _     _      _     _     _      _     _     _       _     @clr
+  @spec @spec _     @mblm              @msrc              @mrrm   _     _    _ _    _
+)
+
+(deflayer special
+  _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  _     _     _     _     _     _     _     _     _     _     _     _     _     del
+  _     _     _     _     lrld  _     _     _     _     _     _     _     _
+  _     _     _     _     _     @tcm  @hrm  _     _     _     _     _     _     _
+  _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _                 _                 _     _     ⤒    ⇞ ⇟    ⤓
+)
