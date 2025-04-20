@@ -10,7 +10,7 @@
   hold-time 200
   caps-time 1000
   ;; mouse stuff
-  mouse-interval 10
+  mouse-interval 5
   mouse-accel 1000
   mouse-min 1
   mouse-max 10
