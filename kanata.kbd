@@ -6,7 +6,7 @@
 (defvar
   tap-time 150
   hold-time 200
-  caps-time 500
+  caps-time 1000
 )
 
 (defalias
@@ -27,8 +27,8 @@
   m; (tap-hold-release $tap-time $hold-time ; rsft)
 
   ;; cool shifts
-  cls (tap-dance $tap-time (one-shot lsft) (caps-word-toggle $caps-time))
-  clr (tap-dance $tap-time (one-shot rsft) (caps-word-toggle $caps-time))
+  cls (tap-dance $tap-time ((one-shot $tap-time lsft) (caps-word-toggle $caps-time)))
+  clr (tap-dance $tap-time ((one-shot $tap-time rsft) (caps-word-toggle $caps-time)))
   
   ;; special
   spec (tap-hold $tap-time $hold-time fn (layer-while-held special))
