@@ -11,10 +11,12 @@
   caps-time 1000
   caps-tap-time 500
   ;; mouse stuff
-  mouse-interval 5
+  mmove-interval 5
   mouse-accel 1000
   mouse-min 1
   mouse-max 10
+  mwheel-interval 100
+  mwheel-dist 5
 )
 
 (defalias
@@ -44,10 +46,13 @@
   tcm (layer-switch thumbs)
 
   ;; mouse
-  mmu (movemouse-accel-up $mouse-interval $mouse-accel $mouse-min $mouse-max)
-  mmd (movemouse-accel-down $mouse-interval $mouse-accel $mouse-min $mouse-max)
-  mml (movemouse-accel-left $mouse-interval $mouse-accel $mouse-min $mouse-max)
-  mmr (movemouse-accel-right $mouse-interval $mouse-accel $mouse-min $mouse-max)
+  mmu (movemouse-accel-up $mmove-interval $mouse-accel $mouse-min $mouse-max)
+  mmd (movemouse-accel-down $mmove-interval $mouse-accel $mouse-min $mouse-max)
+  mml (movemouse-accel-left $mmove-interval $mouse-accel $mouse-min $mouse-max)
+  mmr (movemouse-accel-right $mmove-interval $mouse-accel $mouse-min $mouse-max)
+  msu (mwheel-up $mwheel-interval $mwheel-dist)
+  msd (mwheel-down $mwheel-interval $mwheel-dist)
+  mdbl (multi mltp)
 )
 
 (defsrc
@@ -80,8 +85,8 @@
 (deflayer special
   _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     _     _     _     _     _     _     _     _     _     _     _     _     del
-  _     _     _     _     lrld  _     _     _     @mmu  _     _     _     _
-  _     _     _     _     _     @tcm  @hrm  @mml  @mmd  @mmr  _     _     _     mrgt
-  _     _     _     _     _     _     _     _     _     _     _     _
+  _     _     _     _     lrld  _     _     @mdbl @mmu  _     _     _     _
+  _     _     _     _     _     @tcm  @hrm  @mml  @mmd  @mmr  @msu  _     _     mrgt
+  _     _     _     _     _     _     _     _     _     _     @msd  _
   _     _     _     _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
 )
