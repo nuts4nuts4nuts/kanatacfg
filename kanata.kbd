@@ -11,10 +11,10 @@
   caps-time 1000
   caps-tap-time 500
   ;; mouse stuff
-  mmove-interval 5
-  mouse-accel 1000
+  mmove-interval 10
+  mouse-accel 500
   mouse-min 1
-  mouse-max 10
+  mouse-max 20
   mwheel-interval 100
   mwheel-dist 5
 )
@@ -41,17 +41,29 @@
   clr (tap-dance $caps-tap-time ((one-shot $caps-tap-time rsft) (caps-word-toggle $caps-time)))
   
   ;; special
-  spec (tap-hold $tap-time $hold-time fn (layer-while-held special))
+  sps (tap-hold $tap-time $hold-time fn (layer-while-held specialslow))
+  spf (tap-hold $tap-time $hold-time fn (layer-while-held specialfast))
   hrm (layer-switch homerow)
   tcm (layer-switch thumbs)
 
   ;; mouse
+  msu (mwheel-up $mwheel-interval $mwheel-dist)
+  msd (mwheel-down $mwheel-interval $mwheel-dist)
+  ;; acceleration ones
   mmu (movemouse-accel-up $mmove-interval $mouse-accel $mouse-min $mouse-max)
   mmd (movemouse-accel-down $mmove-interval $mouse-accel $mouse-min $mouse-max)
   mml (movemouse-accel-left $mmove-interval $mouse-accel $mouse-min $mouse-max)
   mmr (movemouse-accel-right $mmove-interval $mouse-accel $mouse-min $mouse-max)
-  msu (mwheel-up $mwheel-interval $mwheel-dist)
-  msd (mwheel-down $mwheel-interval $mwheel-dist)
+  ;; fixed fast
+  mmdf (movemouse-down $mmove-interval $mouse-max)
+  mmlf (movemouse-left $mmove-interval $mouse-max)
+  mmrf (movemouse-right $mmove-interval $mouse-max)
+  mmuf (movemouse-up $mmove-interval $mouse-max)
+  ;; fixed slow
+  mmds (movemouse-down $mmove-interval $mouse-min)
+  mmls (movemouse-left $mmove-interval $mouse-min)
+  mmrs (movemouse-right $mmove-interval $mouse-min)
+  mmus (movemouse-up $mmove-interval $mouse-min)
 )
 
 (defsrc
@@ -60,7 +72,8 @@
   tab    q     w     e     r     t     y     u     i     o     p     [     ]
   caps   a     s     d     f     g     h     j     k     l     ;     '     \     ret
   lsft   z     x     c     v     b     n     m     ,     .     /     rsft
-  fn     lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶  
+  fn     lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶
+  rctl
 )
 
 (deflayer thumbs
@@ -69,7 +82,8 @@
   _     _     _     _      _     _     _      _     _     _       _     _     _
   @mslc _     _     _      _     _     _      _     _     _       _     _     _     @mrrm
   @cls  _     _     _      _     _     _      _     _     _       _     @clr
-  @spec @spec _     @mblm              @msrc              @mrrm   _     _    _ _    _
+  @sps @sps _     @mblm              @msrc              @mrrm   _     _    _ _    _
+  @spf
 )
 
 (deflayer homerow
@@ -78,14 +92,26 @@
   _     _     _     _      _     _     _      _     _     _       _     _     _
   @mslc @ma   @ms   @md    @mf   _     _      @mj   @mk   @ml     @m;   _     _     @mrrm
   @cls  _     _     _      _     _     _      _     _     _       _     @clr
-  @spec @spec _     @mblm              @msrc              @mrrm   _     _    _ _    _
+  @sps @sps _     @mblm              @msrc              @mrrm   _     _    _ _    _
+  @spf
 )
 
-(deflayer special
+(deflayer specialslow
   _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     _     _     _     _     _     _     _     _     _     _     _     _     del
   _     _     _     _     lrld  _     _     _     @mmu  _     _     _     _
   _     _     _     _     _     @tcm  @hrm  @mml  @mmd  @mmr  @msu  _     _     mrgt
   _     _     _     _     _     _     _     _     _     _     @msd  _
   _     _     _     _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
+  _
+)
+
+(deflayer specialfast
+  _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  _     _     _     _     _     _     _     _     _     _     _     _     _     del
+  _     _     _     _     lrld  _     _     _     @mmuf _     _     _     _
+  _     _     _     _     _     @tcm  @hrm  @mmlf @mmdf @mmrf @msu  _     _     mrgt
+  _     _     _     _     _     _     _     _     _     _     @msd  _
+  _     _     _     _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
+  _
 )
