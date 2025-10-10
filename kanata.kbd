@@ -45,6 +45,7 @@
   spf (tap-hold $tap-time $hold-time fn (layer-while-held specialfast))
   hrm (layer-switch homerow)
   tcm (layer-switch thumbs)
+  game (layer-switch gaming)
 
   ;; mouse
   msu (mwheel-up $mwheel-interval $mwheel-dist)
@@ -96,11 +97,21 @@
   @spf
 )
 
+(deflayer gaming
+  _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
+  _     _     _     _      _     _     _      _     _     _    _     _     _     _
+  _     _     _     _      _     _     _      _     _     _    _     _     _
+  spc   _     _     _      _     _     _      _     _     _    _     _     _     _
+  _  _  _     _     _      _     _     _      _     _     _    _
+  @sps @sps   _     _                  _                  _    _     _    _ _    _
+  @spf
+)
+
 (deflayer specialslow
   _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     _     _     _     _     _     _     _     _     _     _     _     _     del
   _     _     _     _     lrld  _     _     _     @mmu  _     _     _     _
-  _     _     _     _     _     @tcm  @hrm  @mml  @mmd  @mmr  @msu  _     _     mrgt
+  _     _     _     _     @game @tcm  @hrm  @mml  @mmd  @mmr  @msu  _     _     mrgt
   _     _     _     _     _     _     _     _     _     _     @msd  _
   _     _     mmid  _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
   _
@@ -110,8 +121,9 @@
   _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     _     _     _     _     _     _     _     _     _     _     _     _     del
   _     _     _     _     lrld  _     _     _     @mmuf _     _     _     _
-  _     _     _     _     _     @tcm  @hrm  @mmlf @mmdf @mmrf @msu  _     _     mrgt
+  _     _     _     _     @game @tcm  @hrm  @mmlf @mmdf @mmrf @msu  _     _     mrgt
   _     _     _     _     _     _     _     _     _     _     @msd  _
   _     _     mmid  _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
   _
 )
+
