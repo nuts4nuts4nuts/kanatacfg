@@ -17,6 +17,37 @@
   mouse-max 20
   mwheel-interval 100
   mwheel-dist 5
+
+  ;; new hrm stuff
+  ;; variables for timings in ms using ZMK-like names
+  quick-tap-ms 100                       ;; same as ZMK ($tap-repress-timeout in Kanata docs)
+  tapping-term 200                       ;; A higher number allows for one handed modded keys reducing the chance of false-positives when typing fast
+
+  ;; keys for tap-hold-release-tap-keys-release templates
+  left-side-keys   (q w e r t z x c v) ;; these keys will always make the precedent same hand tap-hold-release-tap-keys-release output tap.
+  home-row-left-keys  (a s d f)      ;; home row mods - these will output a tap if they're released after the first key
+  right-side-keys (y u i o n m h)
+  home-row-right-keys (j k l)
+)
+
+(deftemplate lhrm (tap-key hold-key)
+	(tap-hold-release-tap-keys-release
+		$quick-tap-ms
+		$tapping-term
+		$tap-key
+		$hold-key
+		$left-side-keys
+		$home-row-left-keys)
+	)
+
+(deftemplate rhrm (tap-key hold-key)
+	(tap-hold-release-tap-keys-release
+		$quick-tap-ms
+		$tapping-term
+		$tap-key
+		$hold-key
+		$right-side-keys
+		$home-row-right-keys)
 )
 
 (defalias
@@ -27,14 +58,15 @@
   mrrm (tap-hold-release $tap-time $hold-time ret rmet)
 
   ;; home row mod-taps
-  ma (tap-hold-release $tap-time $hold-time a lsft)
-  ms (tap-hold-release $tap-time $hold-time s lalt)
-  md (tap-hold-release $tap-time $hold-time d lmet)
-  mf (tap-hold-release $tap-time $hold-time f lctl)
-  mj (tap-hold-release $tap-time $hold-time j rctl)
-  mk (tap-hold-release $tap-time $hold-time k rmet)
-  ml (tap-hold-release $tap-time $hold-time l ralt)
-  m; (tap-hold-release $tap-time $hold-time ; rsft)
+  a (t! lhrm   a lsft )
+  s (t! lhrm   s lalt )
+  d (t! lhrm   d lmet )
+  f (t! lhrm   f lctl )
+  j (t! rhrm   j rctl )
+  k (t! rhrm   k rmet )
+  l (t! rhrm   l ralt )
+  ; (t! rhrm   ; rsft )
+
 
   ;; cool shifts
   cls (tap-dance $caps-tap-time ((one-shot $caps-tap-time lsft) (caps-word-toggle $caps-time)))
@@ -77,21 +109,21 @@
   rctl
 )
 
+(deflayer homerow
+  _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
+  _     _     _     _      _     _     _      _     _     _       _     _     _     _
+  _     _     _     _      _     _     _      _     _     _       _     _     _
+  _     @a    @s    @d     @f    _     _      @j    @k    @l      @;    _     _     _
+  _     _     _     _      _     _     _      _     _     _       _     _   
+  @sps @sps   _     _                  _                  _       _     _    _ _    _
+  @spf
+)
+
 (deflayer thumbs
   _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
   _     _     _     _      _     _     _      _     _     _       _     _     _     @mblm
   _     _     _     _      _     _     _      _     _     _       _     _     _
   @mslc _     _     _      _     _     _      _     _     _       _     _     _     @mrrm
-  _     _     _     _      _     _     _      _     _     _       _     _   
-  @sps @sps   _     @mblm              @msrc              @mrrm   _     _    _ _    _
-  @spf
-)
-
-(deflayer homerow
-  _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
-  _     _     _     _      _     _     _      _     _     _       _     _     _     @mblm
-  _     _     _     _      _     _     _      _     _     _       _     _     _
-  @mslc @ma   @ms   @md    @mf   _     _      @mj   @mk   @ml     @m;   _     _     @mrrm
   _     _     _     _      _     _     _      _     _     _       _     _   
   @sps @sps   _     @mblm              @msrc              @mrrm   _     _    _ _    _
   @spf
