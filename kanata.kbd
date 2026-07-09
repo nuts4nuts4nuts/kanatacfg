@@ -57,6 +57,10 @@
   mblm (tap-hold-release $tap-time $hold-time bspc lmet)
   mrrm (tap-hold-release $tap-time $hold-time ret rmet)
 
+  ;; android thumb mod-taps
+  mbla (tap-hold-release $tap-time $hold-time bspc lalt)
+  mrla (tap-hold-release $tap-time $hold-time ret lalt)
+
   ;; home row mod-taps
   a (t! lhrm   a lsft )
   s (t! lhrm   s lalt )
@@ -64,9 +68,12 @@
   f (t! lhrm   f lctl )
   j (t! rhrm   j rctl )
   k (t! rhrm   k rmet )
-  l (t! rhrm   l ralt )
+  l (t! rhrm   l lalt )
   ; (t! rhrm   ; rsft )
 
+  ;; android home row mod-taps
+  ad (t! lhrm   d lalt )
+  ak (t! lhrm   k lalt )
 
   ;; cool shifts
   cls (tap-dance $caps-tap-time ((one-shot $caps-tap-time lsft) (caps-word-toggle $caps-time)))
@@ -76,8 +83,10 @@
   sps (tap-hold $tap-time $hold-time fn (layer-while-held specialslow))
   spf (tap-hold $tap-time $hold-time fn (layer-while-held specialfast))
   hrm (layer-switch homerow)
+  ham (layer-switch homerowdroid)
   tcm (layer-switch thumbs)
-  game (layer-switch gaming)
+  tam (layer-switch thumbsdroid)
+  gam (layer-switch gaming)
 
   ;; mouse
   msu (mwheel-up $mwheel-interval $mwheel-dist)
@@ -119,7 +128,27 @@
   @spf
 )
 
+(deflayer homerowdroid
+  _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
+  _     _     _     _      _     _     _      _     _     _       _     _     _     _
+  _     _     _     _      _     _     _      _     _     _       _     _     _
+  _     @a    @s    @ad    @f    _     _      @j    @ak   @l      @;    _     _     _
+  _     _     _     _      _     _     _      _     _     _       _     _   
+  @sps @sps   _     _                  _                  _       _     _    _ _    _
+  @spf
+)
+
 (deflayer thumbs
+  _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
+  _     _     _     _      _     _     _      _     _     _       _     _     _     @mbla
+  _     _     _     _      _     _     _      _     _     _       _     _     _
+  @mslc _     _     _      _     _     _      _     _     _       _     _     _     @mrla
+  _     _     _     _      _     _     _      _     _     _       _     _   
+  @sps @sps   _     @mbla              @msrc              @mrra   _     _    _ _    _
+  @spf
+)
+
+(deflayer thumbsdroid
   _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
   _     _     _     _      _     _     _      _     _     _       _     _     _     @mblm
   _     _     _     _      _     _     _      _     _     _       _     _     _
@@ -143,8 +172,8 @@
   _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     _     _     _     _     _     _     _     _     _     _     _     _     del
   _     _     _     _     lrld  _     _     _     @mmu  _     _     _     _
-  _     _     _     _     @game @tcm  @hrm  @mml  @mmd  @mmr  @msu  _     _     mrgt
-  _     _     _     _     _     _     _     _     _     _     @msd  _
+  _     _     _     @gam  @tcm  @hrm  _     @mml  @mmd  @mmr  @msu  _     _     mrgt
+  _     _     _     _     @tam  @ham  _     _     _     _     @msd  _
   _     _     mmid  _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
   _
 )
@@ -153,8 +182,8 @@
   _     f1    f2    f3    f4    f5    f6    f7    f8    f9    f10   f11   f12
   _     _     _     _     _     _     _     _     _     _     _     _     _     del
   _     _     _     _     lrld  _     _     _     @mmuf _     _     _     _
-  _     _     _     _     @game @tcm  @hrm  @mmlf @mmdf @mmrf @msu  _     _     mrgt
-  _     _     _     _     _     _     _     _     _     _     @msd  _
+  _     _     _     @gam  @tcm  @hrm  _     @mmlf @mmdf @mmrf @msu  _     _     mrgt
+  _     _     _     _     @tam  @ham  _     _     _     _     @msd  _
   _     _     mmid  _                 mlft              _     _     ⤒    ⇞ ⇟    ⤓
   _
 )
