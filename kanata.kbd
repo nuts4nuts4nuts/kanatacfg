@@ -24,7 +24,7 @@
   tapping-term 200                       ;; A higher number allows for one handed modded keys reducing the chance of false-positives when typing fast
 
   ;; keys for tap-hold-release-tap-keys-release templates
-  left-side-keys   (q w e r t z x c v) ;; these keys will always make the precedent same hand tap-hold-release-tap-keys-release output tap.
+  left-side-keys   (q w e r t z c v) ;; these keys will always make the precedent same hand tap-hold-release-tap-keys-release output tap.
   home-row-left-keys  (a s d f)      ;; home row mods - these will output a tap if they're released after the first key
   right-side-keys (y u i o n m h)
   home-row-right-keys (j k l)
