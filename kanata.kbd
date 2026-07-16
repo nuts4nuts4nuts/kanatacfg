@@ -68,6 +68,7 @@
   j (t! rhrm   j rctl )
   k (t! rhrm   k rmet )
   l (t! rhrm   l lalt )
+  spc (tap-hold-release $tap-time $hold-time spc lsft)
 
   ;; android home row mod-taps
   ad (t! lhrm   d lalt )
@@ -124,7 +125,7 @@
   _     _     _     _      _     _     _      _     _     _       _     _     _
   _     _     @s    @d     @f    _     _      @j    @k    @l      _     _     _     _
   _     _     _     _      _     _     _      _     _     _       _     _   
-  @sps @sps   _     _                  _                  _       _     _    _ _    _
+  @sps @sps   _     _                  @spc               _       _     _    _ _    _
   @spf
 )
 
@@ -132,9 +133,9 @@
   _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
   _     _     _     _      _     _     _      _     _     _       _     _     _     _
   _     _     _     _      _     _     _      _     _     _       _     _     _
-  _     _     @as    @ad    @f    _     _      @j    @ak   @al      _     _     _     _
+  _     _     @as   @ad    @f    _     _      @j    @ak   @al     _     _     _     _
   _     _     _     _      _     _     _      _     _     _       _     _   
-  @sps @sps   _     _                  _                  _       _     _    _ _    _
+  @sps @sps   _     _                  @spc               _       _     _    _ _    _
   @spf
 )
 
