@@ -62,18 +62,18 @@
   mrla (tap-hold-release $tap-time $hold-time ret lalt)
 
   ;; home row mod-taps
-  a (t! lhrm   a lsft )
   s (t! lhrm   s lalt )
   d (t! lhrm   d lmet )
   f (t! lhrm   f lctl )
   j (t! rhrm   j rctl )
   k (t! rhrm   k rmet )
   l (t! rhrm   l lalt )
-  ; (t! rhrm   ; rsft )
 
   ;; android home row mod-taps
   ad (t! lhrm   d lalt )
-  ak (t! lhrm   k lalt )
+  ak (t! rhrm   k lalt )
+  as (t! lhrm   s lmet )
+  al (t! rhrm   l lmet )
 
   ;; cool shifts
   cls (tap-dance $caps-tap-time ((one-shot $caps-tap-time lsft) (caps-word-toggle $caps-time)))
@@ -132,7 +132,7 @@
   _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
   _     _     _     _      _     _     _      _     _     _       _     _     _     _
   _     _     _     _      _     _     _      _     _     _       _     _     _
-  _     @a    @s    @ad    @f    _     _      @j    @ak   @l      @;    _     _     _
+  _     @a    @as    @ad    @f    _     _      @j    @ak   @al      @;    _     _     _
   _     _     _     _      _     _     _      _     _     _       _     _   
   @sps @sps   _     _                  _                  _       _     _    _ _    _
   @spf
