@@ -107,6 +107,9 @@
   mmls (movemouse-left $mmove-interval $mouse-min)
   mmrs (movemouse-right $mmove-interval $mouse-min)
   mmus (movemouse-up $mmove-interval $mouse-min)
+
+  ;; ctrlquote
+  cq (tap-hold-release $tap-time $hold-time ' rctl)
 )
 
 (defsrc
@@ -117,6 +120,16 @@
   lsft   z     x     c     v     b     n     m     ,     .     /     rsft
   fn     lctl  lalt  lmet              spc               rmet  ralt  ◀    ▲ ▼    ▶
   rctl
+)
+
+(deflayer ctrlquote
+  _    🔅    🔆    mctl   sls   dtn   dnd    ◀◀    ▶⏸    ▶▶      🔇   🔉    🔊 
+  _     _     _     _      _     _     _      _     _     _       _     _     _     _
+  _     _     _     _      _     _     _      _     _     _       _     _     _
+  lctl  _     _     _      _     _     _      _     _     _       _     @cq   _     _
+  _     _     _     _      _     _     _      _     _     _       _     _   
+  @sps  caps  _     _                  _                  _       _     _    _ _    _
+  @spf
 )
 
 (deflayer homerow
